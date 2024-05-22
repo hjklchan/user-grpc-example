@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package user;
+
+import "google/protobuf/empty.proto";
+
+message UserItem {
+    int64 id = 1;
+    string username = 2;
+    string avatar_url = 3;
+}
+
+/// Create user ///
+message CreateUserReq {
+    string email = 1;
+    string username = 2;
+    string password = 3;
+    string verify_code = 4;
+}
+
+/// Delete user ///
+message DeleteUserReq {
+    int64 id = 1;
+}
+
+/// Update user ///
+message UpdateUserReq {
+    string email = 1;
+    string username = 2;
+}
+
+/// Get user ///
+message GetUserReq {
+    int64 id = 1;
+}
+
+message GetUserRep {
+    int64 id = 1;
+    string username = 2;
+    string email = 3;
+    string avatar_url = 4;
+    string created_at = 5;
+    string updated_at = 6;
+}
+
+/// Get user list ///
+message GetUsersRep {
+    repeated UserItem users = 1;
+}
+
+service User {
+    rpc CreateUser (CreateUserReq) returns (google.protobuf.Empty);
+    rpc DeleteUser (DeleteUserReq) returns (google.protobuf.Empty);
+    rpc UpdateUser (UpdateUserReq) returns (google.protobuf.Empty);
+    rpc GetUser    (GetUserReq)    returns (GetUserRep);
+    rpc GetUsers   (google.protobuf.Empty)   returns (GetUsersRep);
+}
