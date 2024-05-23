@@ -10,6 +10,8 @@ pub struct DataStore {
     pub pool: Pool<MySql>
 }
 
+type UserId = String;
+
 #[async_trait]
 pub trait UserRepo {
     async fn create(&self, new_user: abi::User) -> Result<(), UserError>;
@@ -29,11 +31,11 @@ impl UserRepo for DataStore {
         todo!()
     }
 
-    async fn delete(&self, user_id: String) -> Result<(), UserError> {
+    async fn delete(&self, user_id: UserId) -> Result<(), UserError> {
         todo!()
     }
 
-    async fn get(&self, user_id: String) -> Result<abi::User, UserError> {
+    async fn get(&self, user_id: UserId) -> Result<abi::User, UserError> {
         todo!()
     }
 
